@@ -1,5 +1,9 @@
 # jQuery MultiFile Implementation
 
+## Goal
+
+* implement a multi select where users can select one file at a time (then upload them all at once)
+
 ## Customizations
 
 * disabled submit button unless one or more files are selected
