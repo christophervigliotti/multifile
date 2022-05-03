@@ -2,17 +2,17 @@
 
 ## Goal
 
-* implement a multi select where users can select one file at a time (then upload them all at once)
+Implement a multi select where users can select one file at a time (then upload them all at once)
 
 ## Customizations
 
-* disabled submit button unless one or more files are selected
-* submit button displays the number of files that will be uploaded
-* ugly file fields (whose text you cannot control) is replaced by a "add file to upload queue"
+* Submit button is disabled unless one or more files are queued for upload.
+* Submit button displays the number of files that will be uploaded.
+* Non-customizable `<input type="file"> ` field is replaced by a button.
 
 ## More
 
-* link to the thang https://github.com/fyneworks/multifile/
+* jQuery.multifile (it's quite good) https://github.com/fyneworks/multifile/
 
 ## Up and Running
 
