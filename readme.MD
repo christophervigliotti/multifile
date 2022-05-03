@@ -17,4 +17,3 @@ Implement a multi select where users can select one file at a time (then upload 
 ## Up and Running
 
 `python3 -m http.server --bind 127.0.0.1`
--->
