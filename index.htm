@@ -1,0 +1,68 @@
+<!--
+    jQuery MultiFile with features
+        * disabled submit button unless one or more files are selected
+        * submit button displays the number of files that will be uploaded
+        * ugly file fields (whose text you cannot control) is replaced by a "add file to upload queue"
+
+    link to the thang
+        https://github.com/fyneworks/multifile/
+
+    up and running
+        python3 -m http.server --bind 127.0.0.1
+-->
+<html>
+    <head>
+        <link rel="styles.heet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+        <script src="/scripts/jquery.MultiFile.js"></script>
+    </head>
+    <body>
+        <script>
+            $(function(){ // wait for page to load
+
+                // convert file field into a jquery.mulfifile
+                $('#the_filefield').MultiFile({
+                    afterFileRemove: function(){
+                        handleSubmitButtonState();
+                    },
+                    afterFileAppend: function(){
+                        handleSubmitButtonState();
+                    }
+                });
+
+                $( "#the_button" ).on( "click", function() {
+                    onButtonClick();
+                });                
+            });
+
+            function handleSubmitButtonState(){
+                var file_count = $('#the_filefield_list').children().length;
+                if(file_count == 0){
+                    $('#submitButton').prop('disabled',true);
+                    $('#submitButton').html('upload file(s)');
+                }else if(file_count == 1){
+                    $('#submitButton').prop('disabled',false);
+                    $('#submitButton').html('upload 1 file');
+                }else{
+                    $('#submitButton').prop('disabled',false);
+                    $('#submitButton').html('upload ' + file_count + ' files');
+                }                
+            }
+
+            function onButtonClick(){
+                clickFileFieldButton();
+            }
+
+            function clickFileFieldButton(){
+                var set = $('input[id^=the_filefield]');
+                var length = set.length;
+                var last = set[length-1];
+                $(last).click();
+            }
+        </script>
+        <button id="the_button">add file to upload queue</button>
+        <input type="file" id="the_filefield" style="display:none;" /><br />
+        <button id="submitButton" disabled="true">upload file(s)</button>
+    </body>
+</html>
